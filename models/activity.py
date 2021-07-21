@@ -12,10 +12,9 @@ class Activity(Base):
     is_crossed = Column(BOOLEAN, server_default="0", nullable=False)
     created_at = Column(TIMESTAMP, server_default=func.now())
     updated_at = Column(TIMESTAMP, server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
-    user_id = Column(BIGINT, ForeignKey("user.id"))
+    user_id = Column(BIGINT, ForeignKey("user.id", ondelete="CASCADE", name="activity_user_fk"))
 
     __table_args__ = (
         Index("name", "name"),
-        Index("priority", "priority"),
-        Index("user_id_name", "user_id", "name")
+        Index("priority", "priority")
     )

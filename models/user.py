@@ -9,6 +9,7 @@ class User(Base):
     email = Column(String(100), nullable=False, unique=True)
     password = Column(String(100), nullable=False)
     is_active = Column(BOOLEAN, server_default="0", nullable=False)
+    status = Column(String(30), server_default="Offline", nullable=False)
     created_at = Column(TIMESTAMP, server_default=func.now())
     updated_at = Column(TIMESTAMP, server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
 

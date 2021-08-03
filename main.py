@@ -121,8 +121,8 @@ check sugih sent message
 check syamsul received message
 check syamsul sent message
 '''
-sugih = session.query(User).where(User.username=="sugih").first()
-syamsul = session.query(User).where(User.username=="syamsul").first()
+# sugih = session.query(User).where(User.username=="sugih").first()
+# syamsul = session.query(User).where(User.username=="syamsul").first()
 
 # msg = PrivateMessage(text="damang?")
 # msg.sender = sugih

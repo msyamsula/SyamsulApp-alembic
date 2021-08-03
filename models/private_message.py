@@ -8,6 +8,7 @@ class PrivateMessage(Base):
     sender_id = Column(BIGINT, ForeignKey("user.id", name="sender_fk"), nullable=False)
     receiver_id = Column(BIGINT, ForeignKey("user.id", name="receiver_fk"), nullable=False)
     text = Column(String(1000), nullable=False)
+    is_read = Column(BOOLEAN, server_default="0", nullable=False)
     created_at = Column(TIMESTAMP, server_default=func.now())
     updated_at = Column(TIMESTAMP, server_default=sa_text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
 

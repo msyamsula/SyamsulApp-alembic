@@ -2,12 +2,13 @@ from .base import Base
 from .user import User
 from .activity import Activity
 from .private_message import PrivateMessage
+from .shop import Shop
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, ForeignKey, BIGINT, Table
 
 
 User.activities = relationship("Activity", back_populates="user")
-Activity.user = relationship("User", back_populates="activities")
+Activity.user = relationship("User", uselist=False, back_populates="activities")
 
 User.sent_message = relationship("PrivateMessage", back_populates="sender", uselist=True, primaryjoin="User.id == PrivateMessage.sender_id")
 PrivateMessage.sender = relationship("User", back_populates="sent_message", uselist=False, primaryjoin="User.id == PrivateMessage.sender_id")
@@ -35,3 +36,6 @@ User.followings = relationship(
     primaryjoin="User.id == follower_following.c.follower_id",
     secondaryjoin="User.id == follower_following.c.following_id"
 )
+
+User.shops = relationship("Shop", back_populates="owner", uselist=True, primaryjoin="User.id == Shop.owner_id")
+Shop.owner = relationship("User", back_populates="shop", uselist=False, primaryjoin="User.id == Shop.owner_id")
